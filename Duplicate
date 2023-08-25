@@ -1,0 +1,21 @@
+import pandas as pd
+
+# Read CSV and drop duplicates
+data = pd.read_csv('input.csv')
+initial_rows = len(data)
+data = data.drop_duplicates()
+removed_rows = initial_rows - len(data)
+
+# Save deduplicated data to new CSV
+data.to_csv('output.csv', index=False)
+
+# Generate the report
+report = (
+    f"Initial rows: {initial_rows}\n"
+    f"Duplicate rows removed: {removed_rows}\n"
+    f"Rows in new CSV: {len(data)}"
+)
+
+# Write the report to a text file
+with open('report.txt', 'w') as f:
+    f.write(report)
